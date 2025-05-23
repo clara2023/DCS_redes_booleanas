@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QGraphicsScene>
+#include "GraphicNode.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -15,7 +17,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_runAllStepsButton_clicked();
+    void on_addNodeButton_clicked();
+    void on_runStep_clicked();
+
 private:
     Ui::MainWindow *ui;
+    QGraphicsScene* scene;
+    int nodeCounter = 0;
 };
 #endif // MAINWINDOW_H
