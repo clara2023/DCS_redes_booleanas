@@ -29,7 +29,6 @@ void BooleanNetwork::simulateStep()
     for (auto& node : nodes) {
         node.calculateNextState(nodes);
     }
-
     for (auto& node : nodes) {
         node.updateState();
     }
@@ -62,5 +61,10 @@ int BooleanNetwork::getIndexPerId(const std::string &id) const
         }
     }
     return -1;
+}
+
+const std::vector<BooleanNode>& BooleanNetwork::getNodes() const
+{
+    return nodes;
 }
 

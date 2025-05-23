@@ -14,6 +14,7 @@ public:
     void simulate(int nSteps);
 
     void printStates() const;
+    const std::vector<BooleanNode>& getNodes() const;
 
 private:
     std::vector<BooleanNode> nodes;
