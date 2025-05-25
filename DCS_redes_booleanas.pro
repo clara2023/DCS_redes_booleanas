@@ -12,13 +12,14 @@ SOURCES += \
     NetworkTester.cpp \
     booleannetwork.cpp \
     booleannode.cpp \
+    graphicnode.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
-    GraphicNode.h \
     booleannetwork.h \
     booleannode.h \
+    graphicnode.h \
     mainwindow.h
 
 FORMS += \
