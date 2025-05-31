@@ -11,12 +11,16 @@ class GraphicNode : public QObject, public QGraphicsEllipseItem
     Q_OBJECT
 public:
     GraphicNode(qreal x, qreal y);
+    QList<QGraphicsLineItem*> connectedLines;
     bool state = false;
 
     void alternateState();
     void updateColor();
-
     QString getId() const;
+
+    void addLine(QGraphicsLineItem* line);
+    void removeLine(QGraphicsLineItem* line);
+    void removeAllLines(QGraphicsScene* line);
 
 signals:
     void clicked(GraphicNode* node);

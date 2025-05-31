@@ -13,6 +13,7 @@ SOURCES += \
     booleannetwork.cpp \
     booleannode.cpp \
     graphicnode.cpp \
+    graphicswitch.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -20,6 +21,7 @@ HEADERS += \
     booleannetwork.h \
     booleannode.h \
     graphicnode.h \
+    graphicswitch.h \
     mainwindow.h
 
 FORMS += \

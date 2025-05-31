@@ -30,6 +30,8 @@ MainWindow::MainWindow(QWidget *parent)
                    QGraphicsLineItem* line = scene->addLine(newLine, QPen(Qt::black, 2));
 
                    originNode->updateColor();
+                   originNode->addLine(line);
+                   clicked->addLine(line);
                    originNode = nullptr;
 
                    currentMode = InteractionMode::Standard;
@@ -37,8 +39,10 @@ MainWindow::MainWindow(QWidget *parent)
                    resetSelection();
                }
            } else if (currentMode == InteractionMode::Excluding) {
-               scene->removeItem(clicked);
+               clicked->removeAllLines(scene); // será???
+               scene->removeItem(clicked);;
                delete clicked;
+
                ui->statusLabel->setText("");
                currentMode = InteractionMode::Standard;
            }
