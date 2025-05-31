@@ -1,11 +1,13 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "graphicnode.h"
+#include "booleannetwork.h"
+#include "graphicswitch.h"
+
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <unordered_map>
-#include "graphicnode.h"
-#include "booleannetwork.h"
 #include <QVector>
 #include <QPushButton>
 
@@ -29,10 +31,11 @@ public:
 
 private slots:
     void on_runStepButton_clicked();
-    void onInputButtonClicked();
     void on_removeNodeButton_clicked();
     void on_linkNodesButton_clicked();
     void resetSelection();
+    void createSwitches();
+    void handleItemClicked(GraphicNode* node, GraphicSwitch* sw);
 
 private:
     Ui::MainWindow *ui;
@@ -44,8 +47,9 @@ private:
 
     InteractionMode currentMode = InteractionMode::Standard;
     GraphicNode* originNode = nullptr;
+    GraphicSwitch* originSwitch = nullptr;
     std::unordered_map<std::string, GraphicNode*> nodeMap;
+    QVector<GraphicSwitch*> switchesList;
 
-    void createButtons();
 };
 #endif // MAINWINDOW_H
