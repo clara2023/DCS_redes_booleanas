@@ -33,6 +33,8 @@ private slots:
     void on_runStepButton_clicked();
     void on_removeNodeButton_clicked();
     void on_linkNodesButton_clicked();
+    void on_exitButton_clicked();
+
     void resetSelection();
     void createSwitches();
     void handleItemClicked(GraphicNode* node, GraphicSwitch* sw);

@@ -172,45 +172,10 @@ void MainWindow::handleItemClicked(GraphicNode* node, GraphicSwitch* sw)
     }
 }
 
-/*
-
-void MainWindow::createButtons()
+void MainWindow::on_exitButton_clicked()
 {
-    QWidget *lateralColumn = new QWidget(this);
-    QVBoxLayout *layout = new QVBoxLayout(lateralColumn);
-
-    layout->setAlignment(Qt::AlignTop);
-
-    for (int i = 0; i < 10; i++) {
-        QPushButton *newButton = new QPushButton("0", this);
-        newButton->setFixedSize(50,50);
-        newButton->setStyleSheet("");
-
-        layout->addWidget(newButton);
-        connect(newButton, &QPushButton::clicked, this, &MainWindow::onInputButtonClicked);
-
-        inputButtonsList.append(newButton);
-    }
-
-    lateralColumn->setLayout(layout);
-    lateralColumn->setGeometry(50, 50, 100, 500);
-    lateralColumn->show();
+    this->close();
 }
-
-void MainWindow::onInputButtonClicked()
-{
-    QPushButton *clickedButton = qobject_cast<QPushButton*>(sender());
-    if(clickedButton){
-        if(clickedButton->text() == "0") {
-            clickedButton->setText("1");
-            clickedButton->setStyleSheet("background-color: green; color: white;");
-        } else {
-            clickedButton->setText("0");
-            clickedButton->setStyleSheet("");
-        }
-    }
-}
-*/
 
 void MainWindow::on_removeNodeButton_clicked()
 {
