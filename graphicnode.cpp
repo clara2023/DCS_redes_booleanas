@@ -1,4 +1,7 @@
 #include "graphicnode.h"
+#include "booleannode.h"
+#include "graphicnode.h"
+
 #include <QPen>
 #include <QCursor>
 #include <iostream>
@@ -18,15 +21,14 @@ GraphicNode::GraphicNode(qreal x, qreal y)
 void GraphicNode::alternateState()
 {
     state = !state;
-    updateColor();
+    updateColor() ;
 }
 
 void GraphicNode::updateColor()
 {
-    if(state)
-        setBrush(QBrush(Qt::green));
-    else
-        setBrush(QBrush(Qt::lightGray));
+    if (booleanNode) {
+        setBrush(booleanNode->currentState ? QBrush(Qt::green) : QBrush(Qt::lightGray));
+    }
 }
 
 void GraphicNode::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)

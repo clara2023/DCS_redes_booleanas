@@ -1,25 +1,39 @@
 #include "booleannode.h"
+#include "graphicnode.h"
 #include "logictypes.h"
 
 #include <iostream>
+#include <QDebug>
+#include <string>
+#include <vector>
+#include <functional>
+#include <memory>
 
 int BooleanNode::idCounter = 0;
 
 BooleanNode::BooleanNode()
-    : id("N" + std::to_string(idCounter++)),
-      currentState(false),
-      nextState(false) {}
+    : currentState(false),
+      nextState(false),
+      id("N" + std::to_string(idCounter++)) {}
 
 void BooleanNode::computeNextState()
 {
     QVector<bool> inputValues;
+    qDebug() << "=== Estado dos inputs de" << QString::fromStdString(id) << "===";
 
+    qDebug() << ">> GraphicNodes:";
     for (GraphicNode* node : inputNodes) {
-        inputValues.append(node->state);
+        bool state = node->state;
+        QString nodeId = node->getBooleanNode() ? QString::fromStdString(node->getBooleanNode()->getId()) : "sem ID";
+        inputValues.append(state);
+        qDebug() << "   Node ID:" << nodeId << "Estado:" << (state ? "1" : "0");
     }
 
+    qDebug() << ">> GraphicSwitches:";
     for (GraphicSwitch* sw : inputSwitches) {
-        inputValues.append(sw->state);
+        bool state = sw->state;
+        inputValues.append(state);
+        qDebug() << "   Switch Estado:" << (state ? "1" : "0");
     }
 
     switch (logicFunction) {
@@ -51,6 +65,14 @@ void BooleanNode::computeNextState()
             }
             break;
 
+        case LogicFunction::EQUAL:
+            if (!inputValues.isEmpty()) {
+                nextState = inputValues.last();  //  herda o último valor
+            } else {
+                nextState = false;
+            }
+            break;
+
         default:
             nextState = false;
             break;
@@ -77,5 +99,13 @@ void BooleanNode::setFunction(LogicFunction func)
     logicFunction = func;
 }
 
+void BooleanNode::addInputNode(GraphicNode* node) {
+    if (!inputNodes.contains(node)) {
+        inputNodes.append(node);
+    }
+}
 
+void BooleanNode::addInputSwitch(GraphicSwitch* sw) {
+    inputSwitches.append(sw);
+}
 

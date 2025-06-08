@@ -2,12 +2,14 @@
 #define BOOLEANNODE_H
 
 #include "logictypes.h"
-#include "graphicnode.h"
 
 #include <string>
 #include <vector>
 #include <functional>
 #include <memory>
+
+class GraphicNode;
+class GraphicSwitch;
 
 class BooleanNode
 {
@@ -27,16 +29,16 @@ public:
     bool getCurrentState() const;
     std::string getId() const;
 
-private:
-    static int idCounter;
-    std::string id;
+    LogicFunction logicFunction;
+    QList<GraphicNode*> inputNodes;
+    QList<GraphicSwitch*> inputSwitches;
 
     bool currentState;
     bool nextState;
 
-    LogicFunction logicFunction;
-    QList<GraphicNode*> inputNodes;
-    QList<GraphicSwitch*> inputSwitches;
+private:
+    static int idCounter;
+    std::string id;
 };
 
 #endif // BOOLEANNODE_H

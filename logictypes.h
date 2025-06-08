@@ -18,7 +18,8 @@ enum class LogicFunction {
     NOT,
     XOR,
     NAND,
-    NOR
+    NOR,
+    EQUAL
     //CUSTOM
 };
 
@@ -30,6 +31,8 @@ inline QString toQString(LogicFunction f) {
         case LogicFunction::XOR: return "XOR";
         case LogicFunction::NAND: return "NAND";
         case LogicFunction::NOR: return "NOR";
+        case LogicFunction::EQUAL: return "EQUAL";
+
         default: return "UNKNOWN";
     }
 }
@@ -41,7 +44,8 @@ inline QList<LogicFunction> allLogicFunctions() {
         LogicFunction::NOT,
         LogicFunction::XOR,
         LogicFunction::NAND,
-        LogicFunction::NOR
+        LogicFunction::NOR,
+        LogicFunction::EQUAL
     };
 }
 

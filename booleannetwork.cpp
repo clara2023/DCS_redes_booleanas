@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <QDebug>
 
 void BooleanNetwork::addNode(BooleanNode *node)
 {
@@ -17,6 +18,7 @@ void BooleanNetwork::simulateNetworkStep()
     }
     for (auto* node : nodes) {
         node->updateState();
+        qDebug() << "Valor do nodo: " << node->getCurrentState();
     }
 }
 

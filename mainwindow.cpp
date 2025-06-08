@@ -65,10 +65,11 @@ MainWindow::~MainWindow()
 void MainWindow::on_runStepButton_clicked()
 {
     network.simulateNetworkStep();
-    for (auto item : scene->items()) {
-        auto graphicNode = dynamic_cast<GraphicNode*>(item);
-        if (graphicNode && graphicNode->getBooleanNode()) {
-            graphicNode->updateColor();
+    for (QGraphicsItem* item : scene->items()) {
+        GraphicNode* node = dynamic_cast<GraphicNode*>(item);
+        if (node && node->getBooleanNode()) {
+            node->updateColor();  // Atualiza cor com base no estado
+            qDebug() << "Estado visual: " << node->state;
         }
     }
 }
@@ -126,16 +127,33 @@ void MainWindow::handleItemClicked(GraphicNode* node, GraphicSwitch* sw)
                 p2 = ui->graphicsView->mapToScene(viewCenter);
             }
 
-            QLineF newLine(p1, p2);
-            QGraphicsLineItem* line = scene->addLine(newLine, QPen(Qt::black, 2));
+            QGraphicsLineItem* line = scene->addLine(QLineF(p1, p2), QPen(Qt::black, 2));
 
             if (originNode) originNode->addLine(line);
             if (originSwitch) originSwitch->addLine(line);
             if (node) node->addLine(line);
             if (sw) sw->addLine(line);
 
+            GraphicNode* destinationNode = node ? node : originNode;
+            BooleanNode* logicNode = destinationNode->getBooleanNode();
+
+            if (logicNode) {
+                if (originSwitch && destinationNode == node) {
+                    logicNode->addInputSwitch(originSwitch);
+                } else if (originNode && destinationNode == node) {
+                    logicNode->addInputNode(originNode);
+                } else if (sw && destinationNode == originNode) {
+                    logicNode->addInputSwitch(sw);
+                } else if (node && destinationNode == originNode) {
+                    logicNode->addInputNode(node);
+                }
+            } else {
+                qDebug() << "Erro: destino não possui BooleanNode!";
+            }
+
             if (originNode) {
                 originNode->updateColor();
+                originNode->setFlag(QGraphicsItem::ItemIsMovable, false);
                 originNode = nullptr;
             }
             if (originSwitch) {
@@ -164,9 +182,11 @@ void MainWindow::handleItemClicked(GraphicNode* node, GraphicSwitch* sw)
             if(sw->text() == "0") {
                 sw->setText("1");
                 sw->setStyleSheet("background-color: green; color: white;");
+                sw->state = true;
             } else {
                 sw->setText("0");
                 sw->setStyleSheet("");
+                sw->state = false;
             }
         }
     }
