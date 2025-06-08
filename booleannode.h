@@ -1,6 +1,9 @@
 #ifndef BOOLEANNODE_H
 #define BOOLEANNODE_H
 
+#include "logictypes.h"
+#include "graphicnode.h"
+
 #include <string>
 #include <vector>
 #include <functional>
@@ -9,24 +12,30 @@
 class BooleanNode
 {
 public:
-    BooleanNode(const std::string& id);
+    BooleanNode();
 
-    void addEntry(size_t nodeId);
-    void defineLogicFunction(const std::function<bool(const std::vector<bool>&)>& newFunction);
+    void addInputNode(GraphicNode* node);
+    void addInputSwitch(GraphicSwitch* sw);
 
-    void calculateNextState(std::vector<BooleanNode>& allNodes);
+    void removeInputNode(GraphicNode* node);
+    void removeInputSwitch(GraphicSwitch* sw);
+
+    void computeNextState();
     void updateState();
 
     bool getCurrentState() const;
     std::string getId() const;
 
 private:
+    static int idCounter;
     std::string id;
+
     bool currentState;
     bool nextState;
-    std::vector<size_t> entriesIndex;
-    std::function<bool(const std::vector<bool>&)> logicFunction;
 
+    LogicFunction logicFunction;
+    QList<GraphicNode*> inputNodes;
+    QList<GraphicSwitch*> inputSwitches;
 };
 
 #endif // BOOLEANNODE_H

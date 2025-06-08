@@ -22,6 +22,7 @@ HEADERS += \
     booleannode.h \
     graphicnode.h \
     graphicswitch.h \
+    logictypes.h \
     mainwindow.h
 
 FORMS += \

@@ -13,6 +13,7 @@ class GraphicSwitch : public QPushButton
 
 public:
     explicit GraphicSwitch(QWidget *parent = nullptr);
+    bool state = false;
 
     void toggleState();
     void updateAppearance();

@@ -4,18 +4,13 @@
 #include "graphicnode.h"
 #include "booleannetwork.h"
 #include "graphicswitch.h"
+#include "logictypes.h"
 
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <unordered_map>
 #include <QVector>
 #include <QPushButton>
-
-enum class InteractionMode {
-    Standard,
-    Linking,
-    Excluding
-};
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -33,7 +28,6 @@ private slots:
     void on_runStepButton_clicked();
     void on_removeNodeButton_clicked();
     void on_linkNodesButton_clicked();
-    void on_exitButton_clicked();
 
     void resetSelection();
     void createSwitches();

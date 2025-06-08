@@ -28,9 +28,11 @@ void GraphicSwitch::updateAppearance()
     if (isChecked()) {
         setText("1");
         setStyleSheet("background-color: green; color: white;");
+        state = true;
     } else {
         setText("0");
         setStyleSheet("");
+        state = false;
     }
 }
 

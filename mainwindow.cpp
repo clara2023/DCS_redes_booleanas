@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "graphicswitch.h"
+#include "logictypes.h"
+#include "booleannode.h"
 
 #include <iostream>
 #include <QDebug>
@@ -17,48 +19,21 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->setScene(scene);
     ui->graphicsView->setRenderHint(QPainter::Antialiasing);
 
+    connect(ui->exitButton, &QPushButton::clicked, this, [](){
+        qApp->quit();
+    });
 
     connect(ui->addNodeButton, &QPushButton::clicked, this, [=]() {
+       BooleanNode *newBooleanNode = new BooleanNode();
+       network.addNode(newBooleanNode);
+
        GraphicNode *newNode = new GraphicNode(10, 10);
+       newNode->setLogicNode(newBooleanNode);
        scene->addItem(newNode);
 
        connect(newNode, &GraphicNode::clicked, this, [=](GraphicNode* clicked) {
            handleItemClicked(clicked, nullptr);
        });
-       /*
-
-       connect(newNode, &GraphicNode::clicked, this, [=](GraphicNode* clicked) {
-           if (currentMode == InteractionMode::Linking) {
-               if (originNode == nullptr) {
-                   originNode = clicked;
-                   originNode->setBrush(QBrush(Qt::yellow));
-                   ui->statusLabel->setText("Mode: Linking");
-               } else {
-                   QLineF newLine(originNode->scenePos(), clicked->scenePos());
-                   QGraphicsLineItem* line = scene->addLine(newLine, QPen(Qt::black, 2));
-
-                   originNode->updateColor();
-                   originNode->addLine(line);
-                   clicked->addLine(line);
-                   originNode = nullptr;
-
-                   currentMode = InteractionMode::Standard;
-                   ui->statusLabel->setText("");
-                   resetSelection();
-               }
-           } else if (currentMode == InteractionMode::Excluding) {
-               clicked->removeAllLines(scene); // será???
-               scene->removeItem(clicked);;
-               delete clicked;
-
-               ui->statusLabel->setText("");
-               currentMode = InteractionMode::Standard;
-           }
-       });
-
-       */
-
-
     });
     createSwitches();
 }
@@ -70,7 +45,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_runStepButton_clicked()
 {
-    network.simulateStep();
+    network.simulateNetworkStep();
+    for (auto item : scene->items()) {
+        auto graphicNode = dynamic_cast<GraphicNode*>(item);
+        if (graphicNode && graphicNode->getBooleanNode()) {
+            graphicNode->updateColor();
+        }
+    }
 }
 
 void MainWindow::createSwitches()
@@ -170,11 +151,6 @@ void MainWindow::handleItemClicked(GraphicNode* node, GraphicSwitch* sw)
             }
         }
     }
-}
-
-void MainWindow::on_exitButton_clicked()
-{
-    this->close();
 }
 
 void MainWindow::on_removeNodeButton_clicked()

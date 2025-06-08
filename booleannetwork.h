@@ -3,22 +3,15 @@
 
 #include "booleannode.h"
 
-
 class BooleanNetwork
 {
 public:
-    void addNode(const BooleanNode& node);
-    bool connectNodes(const std::string& originId, const std::string& destinationId);
-
-    void simulateStep();
-    void simulate(int nSteps);
-
-    void printStates() const;
-    const std::vector<BooleanNode>& getNodes() const;
+    void addNode(BooleanNode* node);
+    void simulateNetworkStep();
+    void simulateNSteps(int nSteps);
 
 private:
-    std::vector<BooleanNode> nodes;
-    int getIndexPerId(const std::string& id) const;
+    std::vector<BooleanNode*> nodes;
 };
 
 #endif // BOOLEANNETWORK_H

@@ -1,37 +1,60 @@
 #include "booleannode.h"
+#include "logictypes.h"
 
 #include <iostream>
 
-BooleanNode::BooleanNode(const std::string& id) : id(id), currentState(false), nextState(false) {}
+int BooleanNode::idCounter = 0;
 
-void BooleanNode::addEntry(size_t nodeId)
-{
-    entriesIndex.push_back(nodeId);
-}
+BooleanNode::BooleanNode()
+    : id("N" + std::to_string(idCounter++)),
+      currentState(false),
+      nextState(false) {}
 
-void BooleanNode::defineLogicFunction(const std::function<bool (const std::vector<bool> &)> &newFunction)
+void BooleanNode::computeNextState()
 {
-    logicFunction = newFunction;
-}
+    QVector<bool> inputValues;
 
-void BooleanNode::calculateNextState(std::vector<BooleanNode> &allNodes)
-{
-    if(!logicFunction)
-    {
-        std::cerr << "Função lógica não definida para nodo " << id << std::endl;
+    for (GraphicNode* node : inputNodes) {
+        inputValues.append(node->state);
     }
 
-    std::vector<bool> entriesStates;
-    for(auto index : entriesStates) {
-        entriesStates.push_back(allNodes[index].getCurrentState());
+    for (GraphicSwitch* sw : inputSwitches) {
+        inputValues.append(sw->state);
     }
 
-    nextState = logicFunction(entriesStates);
-}
+    switch (logicFunction) {
+        case LogicFunction::AND:
+            nextState = std::all_of(inputValues.begin(), inputValues.end(), [](bool v) { return v; });
+            break;
 
-void BooleanNode::updateState()
-{
-    currentState = nextState;
+        case LogicFunction::OR:
+            nextState = std::any_of(inputValues.begin(), inputValues.end(), [](bool v) { return v; });
+            break;
+
+        case LogicFunction::NOT:
+            // NOT espera apenas uma entrada
+            nextState = !inputValues.isEmpty() ? !inputValues[0] : false;
+            break;
+
+        case LogicFunction::NAND:
+            nextState = !std::all_of(inputValues.begin(), inputValues.end(), [](bool v) { return v; });
+            break;
+
+        case LogicFunction::NOR:
+            nextState = !std::any_of(inputValues.begin(), inputValues.end(), [](bool v) { return v; });
+            break;
+
+        case LogicFunction::XOR:
+            {
+                int count = std::count(inputValues.begin(), inputValues.end(), true);
+                nextState = (count % 2 == 1);
+            }
+            break;
+
+        default:
+            nextState = false;
+            break;
+    }
 }
 
 bool BooleanNode::getCurrentState() const
@@ -44,7 +67,30 @@ std::string BooleanNode::getId() const
     return id;
 }
 
+void BooleanNode::updateState()
+{
+    currentState = nextState;
+}
 
+void BooleanNode::addInputNode(GraphicNode *node)
+{
+
+}
+
+void BooleanNode::addInputSwitch(GraphicSwitch* sw)
+{
+
+}
+
+void BooleanNode::removeInputNode(GraphicNode *node)
+{
+
+}
+
+void BooleanNode::removeInputSwitch(GraphicSwitch* sw)
+{
+
+}
 
 
 

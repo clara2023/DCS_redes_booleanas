@@ -1,19 +1,25 @@
 #ifndef GRAPHICNODE_H
 #define GRAPHICNODE_H
 
+#include "graphicswitch.h"
+
 #include <QGraphicsEllipseItem>
 #include <QBrush>
 #include <QPen>
 #include <QGraphicsSceneMouseEvent>
+
+class BooleanNode;
 
 class GraphicNode : public QObject, public QGraphicsEllipseItem
 {
     Q_OBJECT
 public:
     GraphicNode(qreal x, qreal y);
+    void setLogicNode(BooleanNode* booleanNode);
     QList<QGraphicsLineItem*> connectedLines;
     bool state = false;
 
+    BooleanNode* getBooleanNode() const { return booleanNode; }
     void alternateState();
     void updateColor();
     QString getId() const;
@@ -33,6 +39,7 @@ protected:
 private:
     QString idNode;
     QGraphicsItem* text;
+    BooleanNode* booleanNode;
 };
 
 

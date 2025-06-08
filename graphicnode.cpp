@@ -66,7 +66,7 @@ void GraphicNode::removeAllLines(QGraphicsScene *scene)
     connectedLines.clear();
 }
 
-
-
-
+void GraphicNode::setLogicNode(BooleanNode* node) {
+    this->booleanNode = node;
+}
 
