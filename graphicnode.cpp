@@ -6,12 +6,13 @@
 
 GraphicNode::GraphicNode(qreal x, qreal y)
 {
-    setRect(-25, -25, 50, 50);
+    setRect(-25, -25, 75, 75);
     setPos(x, y);
     setBrush(QBrush(Qt::white));
     setPen(QPen(Qt::black, 2));
     setFlag(QGraphicsItem::ItemIsMovable);
     setFlag(QGraphicsItem::ItemIsSelectable);
+    booleanNode = nullptr;
 }
 
 void GraphicNode::alternateState()
@@ -68,5 +69,14 @@ void GraphicNode::removeAllLines(QGraphicsScene *scene)
 
 void GraphicNode::setLogicNode(BooleanNode* node) {
     this->booleanNode = node;
+}
+
+void GraphicNode::setFunctionText(const QString& text) {
+    if (!functionLabel) {
+        functionLabel = new QGraphicsTextItem(text, this);
+        functionLabel->setPos(rect().center().x() - 20, rect().center().y() - 10);
+    } else {
+        functionLabel->setPlainText(text);
+    }
 }
 

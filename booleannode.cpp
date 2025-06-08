@@ -72,24 +72,9 @@ void BooleanNode::updateState()
     currentState = nextState;
 }
 
-void BooleanNode::addInputNode(GraphicNode *node)
+void BooleanNode::setFunction(LogicFunction func)
 {
-
-}
-
-void BooleanNode::addInputSwitch(GraphicSwitch* sw)
-{
-
-}
-
-void BooleanNode::removeInputNode(GraphicNode *node)
-{
-
-}
-
-void BooleanNode::removeInputSwitch(GraphicSwitch* sw)
-{
-
+    logicFunction = func;
 }
 
 

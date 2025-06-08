@@ -20,6 +20,7 @@ public:
     void removeInputNode(GraphicNode* node);
     void removeInputSwitch(GraphicSwitch* sw);
 
+    void setFunction(LogicFunction func);
     void computeNextState();
     void updateState();
 

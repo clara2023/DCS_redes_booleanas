@@ -8,6 +8,8 @@
 #include <QDebug>
 #include <QWidget>
 #include <QVBoxLayout>
+#include <QStringList>
+#include <QInputDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -24,16 +26,33 @@ MainWindow::MainWindow(QWidget *parent)
     });
 
     connect(ui->addNodeButton, &QPushButton::clicked, this, [=]() {
-       BooleanNode *newBooleanNode = new BooleanNode();
-       network.addNode(newBooleanNode);
+        QStringList functionOptions = allLogicFunctionNames();
+        bool ok;
+        QString selected = QInputDialog::getItem(this, "Função Lógica",
+                                                 "Escolha a função lógica:",
+                                                 functionOptions, 0, false, &ok);
+        if (!ok || selected.isEmpty()) return;
 
-       GraphicNode *newNode = new GraphicNode(10, 10);
-       newNode->setLogicNode(newBooleanNode);
-       scene->addItem(newNode);
+        LogicFunction func = LogicFunction::NOT;  // valor padrão
+        for (LogicFunction f : allLogicFunctions()) {
+            if (toQString(f) == selected) {
+                func = f;
+                break;
+            }
+        }
 
-       connect(newNode, &GraphicNode::clicked, this, [=](GraphicNode* clicked) {
+        BooleanNode *newBooleanNode = new BooleanNode();
+        newBooleanNode->setFunction(func);
+        network.addNode(newBooleanNode);
+
+        GraphicNode *newNode = new GraphicNode(10, 10);
+        newNode->setLogicNode(newBooleanNode);
+        newNode->setFunctionText(selected);
+        scene->addItem(newNode);
+
+        connect(newNode, &GraphicNode::clicked, this, [=](GraphicNode* clicked) {
            handleItemClicked(clicked, nullptr);
-       });
+        });
     });
     createSwitches();
 }

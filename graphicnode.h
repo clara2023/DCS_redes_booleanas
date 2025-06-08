@@ -15,18 +15,22 @@ class GraphicNode : public QObject, public QGraphicsEllipseItem
     Q_OBJECT
 public:
     GraphicNode(qreal x, qreal y);
-    void setLogicNode(BooleanNode* booleanNode);
-    QList<QGraphicsLineItem*> connectedLines;
-    bool state = false;
 
-    BooleanNode* getBooleanNode() const { return booleanNode; }
     void alternateState();
     void updateColor();
+
+    void setLogicNode(BooleanNode* booleanNode);
+    void setFunctionText(const QString& text);
+
+    BooleanNode* getBooleanNode() const { return booleanNode; }
     QString getId() const;
 
     void addLine(QGraphicsLineItem* line);
     void removeLine(QGraphicsLineItem* line);
     void removeAllLines(QGraphicsScene* line);
+
+    QList<QGraphicsLineItem*> connectedLines;
+    bool state = false;
 
 signals:
     void clicked(GraphicNode* node);
@@ -38,7 +42,7 @@ protected:
 
 private:
     QString idNode;
-    QGraphicsItem* text;
+    QGraphicsTextItem* functionLabel = nullptr;
     BooleanNode* booleanNode;
 };
 
