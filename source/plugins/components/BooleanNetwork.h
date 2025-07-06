@@ -30,6 +30,8 @@ public:
 	//void setDelayExpression(std::string _delayExpression);
 	void setBooleanNetworkExpression(std::string _delayExpression, Util::TimeUnit _delayTimeUnit=Util::TimeUnit::unknown);
 	void setBooleanNetwork(double delay);
+    void setBooleanNetworkTimeUnit(Util::TimeUnit _delayTimeUnit);
+    Util::TimeUnit booleanNetworkTimeUnit() const;
     std::string booleanNetworkExpression() const;
 	void setDelay(double delay);
 	double delay() const;
