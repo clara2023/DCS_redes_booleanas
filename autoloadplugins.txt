@@ -75,5 +75,4 @@ stop.so
 unstore.so
 variable.so
 write.so
-trabalho.so
 booleannetwork.so

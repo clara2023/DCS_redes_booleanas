@@ -279,7 +279,7 @@ Plugin* PluginConnectorDummyImpl1::connect(const std::string dynamicLibraryFilen
 		GetInfo = &Unstore::GetPluginInformation;
 	else if (fn == "write.so")
 		GetInfo = &Write::GetPluginInformation;
-	else if (fn == "booleanNetwork.so")
+	else if (fn == "booleannetwork.so")
 		GetInfo = &BooleanNetwork::GetPluginInformation;
 	//else if (fn == "octave.so")
 	//	GetInfo = &Octave::GetPluginInformation;

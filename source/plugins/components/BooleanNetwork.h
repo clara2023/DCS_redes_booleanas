@@ -6,7 +6,7 @@
 #include "../../kernel/simulator/Plugin.h"
 
 /*!
-Trabalho module
+BooleanNetwork module
 DESCRIPTION
 This module is a complete copy of the Delay module, but with a different name and maybe I'll delete some of its functionality.
 It is meant to be used as a starting point for a new module so that the other groups will have an easier time begining their own implementations.

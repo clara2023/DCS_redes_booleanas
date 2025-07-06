@@ -26,7 +26,7 @@ BooleanNetwork::BooleanNetwork(Model* model, std::string name) : ModelComponent(
 	SimulationControlGeneric<std::string>* propExpression = new SimulationControlGeneric<std::string>(
 									std::bind(&BooleanNetwork::booleanNetworkExpression, this), std::bind(&BooleanNetwork::setBooleanNetworkExpression, this, std::placeholders::_1, Util::TimeUnit::unknown),
 									Util::TypeOf<BooleanNetwork>(), getName(), "BooleanNetworkExpression", "");
-	SimulationControlGeneric<double>* propTrabalho = new SimulationControlGeneric<double>(
+	SimulationControlGeneric<double>* propBooleanNetwork = new SimulationControlGeneric<double>(
 									std::bind(&BooleanNetwork::delay, this), std::bind(&BooleanNetwork::setBooleanNetwork, this, std::placeholders::_1),
 									Util::TypeOf<BooleanNetwork>(), getName(), "BooleanNetwork", "");
     SimulationControlGenericEnum<Util::TimeUnit, Util>* propUnitTime = new SimulationControlGenericEnum<Util::TimeUnit, Util>(
@@ -37,13 +37,13 @@ BooleanNetwork::BooleanNetwork(Model* model, std::string name) : ModelComponent(
                                     Util::TypeOf<BooleanNetwork>(), getName(), "AllocationType", "");
 
 	_parentModel->getControls()->insert(propExpression);
-	_parentModel->getControls()->insert(propTrabalho);
+	_parentModel->getControls()->insert(propBooleanNetwork);
 	_parentModel->getControls()->insert(propUnitTime);
     _parentModel->getControls()->insert(propAlloc);
 
 	// setting properties
 	_addProperty(propExpression);
-	_addProperty(propTrabalho);
+	_addProperty(propBooleanNetwork);
 	_addProperty(propUnitTime);
     _addProperty(propAlloc);
 }
