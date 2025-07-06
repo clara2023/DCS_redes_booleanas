@@ -8,7 +8,7 @@
 // Model Components
 #include "../../../../plugins/components/Create.h"
 #include "../../../../plugins/components/Seize.h"
-#include "../../../../plugins/components/Trabalho.h"
+#include "../../../../plugins/components/BooleanNetwork.h"
 #include "../../../../plugins/components/Release.h"
 #include "../../../../plugins/components/Dispose.h"
 #include "../../../TraitsApp.h"
@@ -43,8 +43,8 @@ int Smart_BooleanNetwork::main(int argc, char** argv) {
 	seize1->setAllocationType(Util::AllocationType::Transfer);
 
 	// Componente Trabalho imita o exato funcionamento do componente Delay
-	Trabalho* trabalho1 = plugins->newInstance<Trabalho>(model);
-	trabalho1->setTrabalhoExpression("unif(10,30)", Util::TimeUnit::second);
+	BooleanNetwork* trabalho1 = plugins->newInstance<BooleanNetwork>(model);
+	trabalho1->setBooleanNetworkExpression("unif(10,30)", Util::TimeUnit::second);
 
 	Release* release1 = plugins->newInstance<Release>(model);
 	release1->getReleaseRequests()->insert(new SeizableItem(machine1, "1"));

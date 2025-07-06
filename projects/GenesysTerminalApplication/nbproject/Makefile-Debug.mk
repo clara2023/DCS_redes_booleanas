@@ -222,7 +222,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/f13e5db9/Unstore.o \
 	${OBJECTDIR}/_ext/f13e5db9/Wait.o \
 	${OBJECTDIR}/_ext/f13e5db9/Write.o \
-	${OBJECTDIR}/_ext/f13e5db9/Trabalho.o \
+	${OBJECTDIR}/_ext/f13e5db9/BooleanNetwork.o \
 	${OBJECTDIR}/_ext/ccae408d/AssignmentItem.o \
 	${OBJECTDIR}/_ext/ccae408d/CppCompiler.o \
 	${OBJECTDIR}/_ext/ccae408d/DummyElement.o \
@@ -307,20 +307,20 @@ ${OBJECTDIR}/_ext/296208d5/Smart_BooleanNetwork_nomain.o: ${OBJECTDIR}/_ext/2962
 	fi
 
 # Compilar Plugin
-${OBJECTDIR}/_ext/f13e5db9/Trabalho.o: ../../source/plugins/components/Trabalho.cpp
+${OBJECTDIR}/_ext/f13e5db9/BooleanNetwork.o: ../../source/plugins/components/BooleanNetwork.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext
-	$(COMPILE.cc) -g -I../../source/gtest -std=c++14 -o ${OBJECTDIR}/_ext/f13e5db9/Trabalho.o ../../source/plugins/components/Trabalho.cpp
+	$(COMPILE.cc) -g -I../../source/gtest -std=c++14 -o ${OBJECTDIR}/_ext/f13e5db9/BooleanNetwork.o ../../source/plugins/components/BooleanNetwork.cpp
 
-${OBJECTDIR}/_ext/f13e5db9/Trabalho_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/Trabalho.o ../../source/plugins/components/Trabalho.cpp
+${OBJECTDIR}/_ext/f13e5db9/BooleanNetwork_nomain.o: ${OBJECTDIR}/_ext/f13e5db9/BooleanNetwork.o ../../source/plugins/components/BooleanNetwork.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/f13e5db9
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/f13e5db9/Trabalho.o`; \
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/_ext/f13e5db9/BooleanNetwork.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
-	    $(COMPILE.cc) -g -I../../source/gtest -std=c++14 -Dmain=__nomain -o ${OBJECTDIR}/_ext/f13e5db9/Trabalho_nomain.o ../../source/plugins/components/Trabalho.cpp;\
+	    $(COMPILE.cc) -g -I../../source/gtest -std=c++14 -Dmain=__nomain -o ${OBJECTDIR}/_ext/f13e5db9/BooleanNetwork_nomain.o ../../source/plugins/components/BooleanNetwork.cpp;\
 	else  \
-	    ${CP} ${OBJECTDIR}/_ext/f13e5db9/Trabalho.o ${OBJECTDIR}/_ext/f13e5db9/Trabalho_nomain.o;\
+	    ${CP} ${OBJECTDIR}/_ext/f13e5db9/BooleanNetwork.o ${OBJECTDIR}/_ext/f13e5db9/BooleanNetwork_nomain.o;\
 	fi
 
 ${OBJECTDIR}/_ext/acd0b333/GenesysShell.o: ../../source/applications/terminal/GenesysShell/GenesysShell.cpp
