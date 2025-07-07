@@ -42,17 +42,17 @@ int Smart_BooleanNetwork::main(int argc, char** argv) {
 	seize1->setQueue(queueSeize1);
 	seize1->setAllocationType(Util::AllocationType::Transfer);
 
-	// Componente Trabalho imita o exato funcionamento do componente Delay
-	BooleanNetwork* trabalho1 = plugins->newInstance<BooleanNetwork>(model);
-	trabalho1->setBooleanNetworkExpression("unif(10,30)", Util::TimeUnit::second);
-
+	// BooleanNetwork element created
+	BooleanNetwork* booleanNet = plugins->newInstance<BooleanNetwork>(model);
+	booleanNet->initializeNetwork("1011"); // TODO: accept user input
+	
 	Release* release1 = plugins->newInstance<Release>(model);
 	release1->getReleaseRequests()->insert(new SeizableItem(machine1, "1"));
 	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
 	// connect model components to create a "workflow"
 	create1->getConnections()->insert(seize1);
-	seize1->getConnections()->insert(trabalho1);
-	trabalho1->getConnections()->insert(release1);
+	seize1->getConnections()->insert(booleanNet);
+	booleanNet->getConnections()->insert(release1);
 	release1->getConnections()->insert(dispose1);
 	// set options, save and simulate
 	ModelSimulation* sim = model->getSimulation();

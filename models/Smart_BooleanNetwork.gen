@@ -12,6 +12,6 @@
 # Model Components
 84  Create     "Create_1" entityType="Customer" nextId=88 timeBetweenCreations="expo(20)" 
 88  Seize      "Seize_1" queueable="Seize_1.Queue" allocationType=2 nextId=89 requestSeizable[0]="Machine_1" 
-89  BooleanNetwork "BooleanNetwork_1" delayExpression="unif(10,30)" nextId=90 
+89  BooleanNetwork "BooleanNetwork_1" nextId=90 
 90  Release    "Release_1" nextId=91 requestSeizable[0]="Machine_1" 
 91  Dispose    "Dispose_1" nexts=0 
