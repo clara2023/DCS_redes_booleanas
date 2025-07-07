@@ -3,6 +3,7 @@
 #include "../../kernel/simulator/Attribute.h"
 #include "../../kernel/simulator/SimulationControlAndResponse.h"
 #include "../../kernel/simulator/ModelComponent.h"
+std::string BooleanNetwork::_userConfig = "";
 
 #ifdef PLUGINCONNECT_DYNAMIC
 
@@ -10,6 +11,20 @@ extern "C" StaticGetPluginInformation GetPluginInformation() {
 	return &BooleanNetwork::GetPluginInformation;
 }
 #endif
+
+void BooleanNetwork::configureFromArgs(int argc, char** argv) {
+	for (int i = 0; i < argc; ++i) {
+		std::string arg = argv[i];
+		if (arg.find("--bn=") == 0) {
+			// Remove the prefix "--bn="
+			_userConfig = arg.substr(5);
+		}
+	}
+	std::cout << "BooleanNetwork user config: " << _userConfig << std::endl;
+}
+std::string BooleanNetwork::getUserConfig() {
+	return _userConfig;
+}
 
 ModelDataDefinition* BooleanNetwork::NewInstance(Model* model, std::string name) {
 	return new BooleanNetwork(model, name);
@@ -45,6 +60,7 @@ void BooleanNetwork::stepNetwork() {
 
 void BooleanNetwork::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	stepNetwork();
+	// TODO: remove this debug output maybe
 	std::cout << "Entity " << entity->getName() << " passou pelo BooleanNetwork. Estado: ";
 	for (bool b : _state) std::cout << (b ? '1' : '0');
 	std::cout << std::endl;

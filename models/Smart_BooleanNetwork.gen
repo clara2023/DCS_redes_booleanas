@@ -2,7 +2,7 @@
 # Simulator, Model and Simulation infos
 0   Simulator  "GenESyS - GENeric and Expansible SYstem Simulator" versionNumber=230914 
 0   ModelInfo  "Model 1" version="1.0" projectTitle="" description="" analystName="" 
-0   ModelSimulation "" traceLevel=2 replicationLength=1000.000000 numberOfReplications=30 
+0   ModelSimulation "" traceLevel=2 replicationLength=1000.000000 
 
 # Model Data Definitions
 85  EntityType "Customer" 

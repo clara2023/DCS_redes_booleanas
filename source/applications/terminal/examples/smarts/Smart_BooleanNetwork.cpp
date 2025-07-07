@@ -44,8 +44,9 @@ int Smart_BooleanNetwork::main(int argc, char** argv) {
 
 	// BooleanNetwork element created
 	BooleanNetwork* booleanNet = plugins->newInstance<BooleanNetwork>(model);
+	BooleanNetwork::configureFromArgs(argc, argv);
 	booleanNet->initializeNetwork("1011"); // TODO: accept user input
-	
+
 	Release* release1 = plugins->newInstance<Release>(model);
 	release1->getReleaseRequests()->insert(new SeizableItem(machine1, "1"));
 	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
@@ -57,7 +58,7 @@ int Smart_BooleanNetwork::main(int argc, char** argv) {
 	// set options, save and simulate
 	ModelSimulation* sim = model->getSimulation();
 	sim->setReplicationLength(1000, Util::TimeUnit::second);
-	sim->setNumberOfReplications(30);
+	sim->setNumberOfReplications(1); // TODO: check replication number
 	model->getTracer()->setTraceLevel(TraceManager::Level::L2_results);
 	model->save("./models/Smart_BooleanNetwork.gen");
 	// execute the simulation
