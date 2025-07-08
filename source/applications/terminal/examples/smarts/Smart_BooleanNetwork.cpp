@@ -46,7 +46,11 @@ int Smart_BooleanNetwork::main(int argc, char** argv) {
 	BooleanNetwork* booleanNet = plugins->newInstance<BooleanNetwork>(model);
 	booleanNet->initializeNetwork("1010");
 	std::cout << "Initial state: ";
+<<<<<<< HEAD
 	booleanNet->setExpression({"N3==0", "N1*N2", "N2+N3", "N0+N3 == 1"}); // Example expression
+=======
+	booleanNet->setExpression({"N1==0", "N1*N2", "N2+N3", "N2+N3 == 1"}); // Example expression
+>>>>>>> 03927aa25d02118d8dbb0549c7903a35e5b4ec30
 
 	Release* release1 = plugins->newInstance<Release>(model);
 	release1->getReleaseRequests()->insert(new SeizableItem(machine1, "1"));
