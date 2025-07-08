@@ -1,7 +1,5 @@
 #include "Smart_BooleanNetwork.h"
 
-// you have to included need libs
-
 // GEnSyS Simulator
 #include "../../../../kernel/simulator/Simulator.h"
 
@@ -45,12 +43,7 @@ int Smart_BooleanNetwork::main(int argc, char** argv) {
 	// BooleanNetwork element created
 	BooleanNetwork* booleanNet = plugins->newInstance<BooleanNetwork>(model);
 	booleanNet->initializeNetwork("1010");
-	std::cout << "Initial state: ";
-<<<<<<< HEAD
-	booleanNet->setExpression({"N3==0", "N1*N2", "N2+N3", "N0+N3 == 1"}); // Example expression
-=======
-	booleanNet->setExpression({"N1==0", "N1*N2", "N2+N3", "N2+N3 == 1"}); // Example expression
->>>>>>> 03927aa25d02118d8dbb0549c7903a35e5b4ec30
+	booleanNet->setExpression({"N3==0", "N1*N2", "N2+N3", "N0+N3 == 1"});
 
 	Release* release1 = plugins->newInstance<Release>(model);
 	release1->getReleaseRequests()->insert(new SeizableItem(machine1, "1"));
@@ -63,7 +56,7 @@ int Smart_BooleanNetwork::main(int argc, char** argv) {
 	// set options, save and simulate
 	ModelSimulation* sim = model->getSimulation();
 	sim->setReplicationLength(1000, Util::TimeUnit::second);
-	sim->setNumberOfReplications(1); // TODO: check replication number
+	sim->setNumberOfReplications(1);
 	model->getTracer()->setTraceLevel(TraceManager::Level::L2_results);
 	model->save("./models/Smart_BooleanNetwork.gen");
 	// execute the simulation

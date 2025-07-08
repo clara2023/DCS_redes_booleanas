@@ -93,11 +93,14 @@ void BooleanNetwork::_saveInstance(PersistenceRecord *fields, bool saveDefaultVa
 PluginInformation* BooleanNetwork::GetPluginInformation() {
 	//TODO: change description
 	PluginInformation* info = new PluginInformation(Util::TypeOf<BooleanNetwork>(), &BooleanNetwork::LoadInstance, &BooleanNetwork::NewInstance);
-	std::string text = "The BooleanNetwork module processes entities based on a boolean network structure.";
-	text += " When an entity arrives at a BooleanNetwork module, the boolean network expression is evaluated and the entity is processed accordingly.";
-	text += " The processing time is then allocated to the entity’s value-added, non-value added, transfer, wait, or other time.";
-	text += " Associated costs are calculated and allocated as well.";
-	text += " TYPICAL USES: (1) Processing a check at a bank; (2) Performing a setup on a machine; (3) Transferring a document to another department";
+	std::string text = "BooleanNetwork é um componente que emula um passo de rede booleana.";
+	text += " O resultado, ou seja, o estado da rede, é uma string atualizada com base nas expressões booleanas fornecidas.";
+	text += " As expressões devem ser fornecidas na forma de strings, onde cada nodo é representada por 'N{i}',";
+	text += " onde 'i' é o índice do nodo na rede. O estado inicial da rede é definido por uma string de 0s e 1s,";
+	text += " onde '1' representa um nodo ativo e '0' um nodo inativo. O componente processa as expressões booleanas";
+	text += " e atualiza o estado da rede a cada passo. As expressões podem incluir operadores lógicos como AND, OR, NOT,";
+	text += " e podem ser combinadas para criar redes booleanas complexas.";
+
 	info->setDescriptionHelp(text);
 	return info;
 }
