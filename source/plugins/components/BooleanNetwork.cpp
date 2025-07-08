@@ -72,11 +72,11 @@ void BooleanNetwork::stepNetwork() {
 
 void BooleanNetwork::_onDispatchEvent(Entity* entity, unsigned int inputPortNumber) {
 	stepNetwork();
-	// TODO: remove this debug output maybe
-	std::cout << "Entity " << entity->getName() << " passou pelo BooleanNetwork. Estado: ";
-	for (bool b : _state) std::cout << (b ? '1' : '0');
-	std::cout << std::endl;
-
+	// attributes each node with its current state
+	for (size_t i = 0; i < _state.size(); ++i) {
+		std::string nodeName = "N" + std::to_string(i);
+		entity->setAttributeValue(nodeName, _state[i] ? 1.0 : 0.0, "0", true); // Store as 1.0 or 0.0
+	}
 	// Passa a entidade adiante sem atraso
 	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
 }
@@ -91,7 +91,6 @@ void BooleanNetwork::_saveInstance(PersistenceRecord *fields, bool saveDefaultVa
 }
 
 PluginInformation* BooleanNetwork::GetPluginInformation() {
-	//TODO: change description
 	PluginInformation* info = new PluginInformation(Util::TypeOf<BooleanNetwork>(), &BooleanNetwork::LoadInstance, &BooleanNetwork::NewInstance);
 	std::string text = "BooleanNetwork é um componente que emula um passo de rede booleana.";
 	text += " O resultado, ou seja, o estado da rede, é uma string atualizada com base nas expressões booleanas fornecidas.";

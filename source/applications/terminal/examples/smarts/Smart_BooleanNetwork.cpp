@@ -44,15 +44,17 @@ int Smart_BooleanNetwork::main(int argc, char** argv) {
 	BooleanNetwork* booleanNet = plugins->newInstance<BooleanNetwork>(model);
 	booleanNet->initializeNetwork("1010");
 	booleanNet->setExpression({"N3==0", "N1*N2", "N2+N3", "N0+N3 == 1"});
-
+	
 	Release* release1 = plugins->newInstance<Release>(model);
 	release1->getReleaseRequests()->insert(new SeizableItem(machine1, "1"));
 	Dispose* dispose1 = plugins->newInstance<Dispose>(model);
+
 	// connect model components to create a "workflow"
 	create1->getConnections()->insert(seize1);
 	seize1->getConnections()->insert(booleanNet);
 	booleanNet->getConnections()->insert(release1);
 	release1->getConnections()->insert(dispose1);
+
 	// set options, save and simulate
 	ModelSimulation* sim = model->getSimulation();
 	sim->setReplicationLength(1000, Util::TimeUnit::second);

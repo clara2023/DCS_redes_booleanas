@@ -1,3 +1,7 @@
+Number of Replications: 1
+Replication Length: 1000.000000 second
+Replication/Report Base TimeUnit: second
+-------------------------------------------------------------
 Replication 1 of 1 is starting.
 -------------------------------------------------------------
 Valores Iniciais dos Nodos (N0,N1,N2,N3): 1,0,1,0
@@ -64,34 +68,34 @@ Entity Customer_58 passou pelo BooleanNetwork. Estado: 1011
 
 --------------------------------------------------------------
 
-|  Replication 1 of 1 has finished with last event at time 994.424930 second because replication length 1000.000000 second was achieved; Elapsed time 0.016336 seconds.
+||  Replication 1 of 1 has finished with last event at time 994.424930 second because replication length 1000.000000 second was achieved; Elapsed time 0.020107 seconds.
 |  
 |  Begin of Report for replication 1 of 1
 |  |  |  |  name                                elems    min      max      average  variance stddev   varCoef  confInterconfLevel
 |  |  Statistics for Create:
 |  |  |  Create_1:
-|  |  |  |  Create_1.CountNumberOut............ 58.0
+|  |  |  |  Create_1.CountNumberOut............ 58.0     
 |  |  Statistics for Dispose:
 |  |  |  Dispose_1:
 |  |  |  |  Dispose_1.CountNumberIn............ 58.0     
 |  |  Statistics for EntityType:
 |  |  |  Customer:
-|  |  |  |  Customer.TotalTimeInSystem......... 58.0     0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000
-|  |  |  |  Customer.TransferTime.............. 58.0     0.0      994.4249 495.0947 100009.9 316.2435 0.638754 81.38862 0.950000
+|  |  |  |  Customer.TotalTimeInSystem......... 58.0     0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000 
+|  |  |  |  Customer.TransferTime.............. 58.0     0.0      994.4249 495.0947 100009.9 316.2435 0.638754 81.38862 0.950000 
 |  |  Statistics for Queue:
 |  |  |  Seize_1.Queue:
-|  |  |  |  Seize_1.Queue.NumberInQueue........ 0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000
-|  |  |  |  Seize_1.Queue.TimeInQueue.......... 0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000
+|  |  |  |  Seize_1.Queue.NumberInQueue........ 0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000 
+|  |  |  |  Seize_1.Queue.TimeInQueue.......... 0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000 
 |  |  Statistics for Resource:
 |  |  |  Machine_1:
-|  |  |  |  Machine_1.ProportionSeized......... 1.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000
-|  |  |  |  Machine_1.CapacityUtilization...... 0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000
-|  |  |  |  Machine_1.TimeSeized............... 58.0     0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000
-|  |  |  |  Machine_1.TimeFailed............... 0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000
-|  |  |  |  Machine_1.TotalTimeSeized.......... 0.0
-|  |  |  |  Machine_1.TotalTimeFailed.......... 0.0
-|  |  |  |  Machine_1.Seizes................... 58.0
-|  |  |  |  Machine_1.Releases................. 58.0
+|  |  |  |  Machine_1.ProportionSeized......... 1.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000 
+|  |  |  |  Machine_1.CapacityUtilization...... 0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000 
+|  |  |  |  Machine_1.TimeSeized............... 58.0     0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000 
+|  |  |  |  Machine_1.TimeFailed............... 0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000 
+|  |  |  |  Machine_1.TotalTimeSeized.......... 0.0      
+|  |  |  |  Machine_1.TotalTimeFailed.......... 0.0      
+|  |  |  |  Machine_1.Seizes................... 58.0     
+|  |  |  |  Machine_1.Releases................. 58.0     
 |  |  |  |  Machine_1.CostBusy................. 0.0      
 |  |  |  |  Machine_1.CostIdle................. 994.42493
 |  |  |  |  Machine_1.CostPerUse............... 58.0     

@@ -17,6 +17,7 @@ public:
 	void setExpression(std::vector<std::string> expr);
 	void initializeNetwork(const std::string& initialState);
 	void stepNetwork();
+	std::vector<bool> getState() const { return _state; } //!< Returns the current state of the network as a vector of booleans
 
 protected:
 	virtual void _onDispatchEvent(Entity* entity, unsigned int inputPortNumber) override;
