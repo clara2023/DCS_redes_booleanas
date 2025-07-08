@@ -1,5 +1,7 @@
 #include "BooleanNetwork.h"
 #include "../../kernel/simulator/Model.h"
+#include "../../kernel/simulator/Parser_if.h"
+#include "../../kernel/simulator/PluginManager.h"
 #include "../../kernel/simulator/Attribute.h"
 #include "../../kernel/simulator/SimulationControlAndResponse.h"
 #include "../../kernel/simulator/ModelComponent.h"
@@ -12,16 +14,6 @@ extern "C" StaticGetPluginInformation GetPluginInformation() {
 }
 #endif
 
-void BooleanNetwork::configureFromArgs(int argc, char** argv) {
-	for (int i = 0; i < argc; ++i) {
-		std::string arg = argv[i];
-		if (arg.find("--bn=") == 0) {
-			// Remove the prefix "--bn="
-			_userConfig = arg.substr(5);
-		}
-	}
-	std::cout << "BooleanNetwork user config: " << _userConfig << std::endl;
-}
 std::string BooleanNetwork::getUserConfig() {
 	return _userConfig;
 }
@@ -37,10 +29,7 @@ ModelComponent* BooleanNetwork::LoadInstance(Model* model, PersistenceRecord *fi
 }
 
 BooleanNetwork::BooleanNetwork(Model* model, std::string name)
-	: ModelComponent(model, Util::TypeOf<BooleanNetwork>(), name) {
-	// Estado inicial fixo para teste
-	initializeNetwork("1101");
-}
+: ModelComponent(model, Util::TypeOf<BooleanNetwork>(), name) {}
 
 void BooleanNetwork::initializeNetwork(const std::string& initialState) {
 	_state.clear();
@@ -49,11 +38,34 @@ void BooleanNetwork::initializeNetwork(const std::string& initialState) {
 	}
 }
 
+void BooleanNetwork::setExpression(std::vector<std::string> expr) {
+	_expression = expr;
+}
+
+std::vector<std::string> BooleanNetwork::_getExprs() const {
+	// replaces each "N{i}" with the value of _state[i]
+	std::vector<std::string> modifiedExpressions = _expression;
+	for (size_t i = 0; i < _state.size(); ++i) {
+		// Finds each "N{i}" with the value of _state[i]
+		// and replaces it with "1" or "0" in modifiedExpressions
+		std::string placeholder = "N" + std::to_string(i);
+		for (std::string& expr : modifiedExpressions) {
+			size_t pos = 0;
+			while ((pos = expr.find(placeholder, pos)) != std::string::npos) {
+				expr.replace(pos, placeholder.length(), _state[i] ? "1" : "0");
+				pos += 1; // Move past the replaced character
+			}
+		}
+	}
+	return modifiedExpressions;
+}
+
 void BooleanNetwork::stepNetwork() {
 	std::vector<bool> nextState = _state;
-	for (size_t i = 0; i < _state.size(); ++i) {
-		// Exemplo: NOT da célula atual
-		nextState[i] = !_state[i];
+	std::vector<std::string> expressions = _getExprs();
+	for (size_t i = 0; i < expressions.size(); ++i) {
+		bool result = _parentModel->parseExpression(expressions[i]);
+		nextState[i] = (result != 0.0); // Assuming the expression evaluates to a boolean value
 	}
 	_state = nextState;
 }
