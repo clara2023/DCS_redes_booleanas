@@ -1,21 +1,20 @@
-#ifndef BOOLEANNETWORK_H
-#define BOOLEANNETWORK_H
+#pragma once
 
 #include "../../kernel/simulator/ModelComponent.h"
 
 class BooleanNetwork : public ModelComponent {
 public:
-	static void configureFromArgs(int argc, char** argv);
-	static std::string getUserConfig();
-	BooleanNetwork(Model* model, std::string name = "");
-	virtual ~BooleanNetwork() = default;
+BooleanNetwork(Model* model, std::string name = "");
+virtual ~BooleanNetwork() = default;
+static std::string getUserConfig();
 
 public:
+	static PluginInformation* GetPluginInformation();
 	static ModelComponent* LoadInstance(Model* model, PersistenceRecord *fields);
 	static ModelDataDefinition* NewInstance(Model* model, std::string name);
-	static PluginInformation* GetPluginInformation();
 
 public:
+	void setExpression(std::vector<std::string> expr);
 	void initializeNetwork(const std::string& initialState);
 	void stepNetwork();
 
@@ -27,6 +26,6 @@ protected:
 private:
 	std::vector<bool> _state;
 	static std::string _userConfig;
+	std::vector<std::string>  _expression; // This could be used to store a boolean expression for the network, if needed
+	std::vector<std::string> _getExprs() const;
 };
-
-#endif /* BOOLEANNETWORK_H */
