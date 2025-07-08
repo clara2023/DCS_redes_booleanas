@@ -1,0 +1,130 @@
+Replication 1 of 1 is starting.
+-------------------------------------------------------------
+Valores Iniciais dos Nodos (N0,N1,N2,N3): 1,0,1,0
+Expressões: {"N3==0", "N1*N2", "N2+N3", "N0+N3 == 1"}
+-------------------------------------------------------------
+Entity Customer_1 passou pelo BooleanNetwork. Estado: 1011
+Entity Customer_2 passou pelo BooleanNetwork. Estado: 0010
+Entity Customer_3 passou pelo BooleanNetwork. Estado: 1010
+Entity Customer_4 passou pelo BooleanNetwork. Estado: 1011
+Entity Customer_5 passou pelo BooleanNetwork. Estado: 0010
+Entity Customer_6 passou pelo BooleanNetwork. Estado: 1010
+Entity Customer_7 passou pelo BooleanNetwork. Estado: 1011
+Entity Customer_8 passou pelo BooleanNetwork. Estado: 0010
+Entity Customer_9 passou pelo BooleanNetwork. Estado: 1010
+Entity Customer_10 passou pelo BooleanNetwork. Estado: 1011
+Entity Customer_11 passou pelo BooleanNetwork. Estado: 0010
+Entity Customer_12 passou pelo BooleanNetwork. Estado: 1010
+Entity Customer_13 passou pelo BooleanNetwork. Estado: 1011
+Entity Customer_14 passou pelo BooleanNetwork. Estado: 0010
+Entity Customer_15 passou pelo BooleanNetwork. Estado: 1010
+Entity Customer_16 passou pelo BooleanNetwork. Estado: 1011
+Entity Customer_17 passou pelo BooleanNetwork. Estado: 0010
+Entity Customer_18 passou pelo BooleanNetwork. Estado: 1010
+Entity Customer_19 passou pelo BooleanNetwork. Estado: 1011
+Entity Customer_20 passou pelo BooleanNetwork. Estado: 0010
+Entity Customer_21 passou pelo BooleanNetwork. Estado: 1010
+Entity Customer_22 passou pelo BooleanNetwork. Estado: 1011
+Entity Customer_23 passou pelo BooleanNetwork. Estado: 0010
+Entity Customer_24 passou pelo BooleanNetwork. Estado: 1010
+Entity Customer_25 passou pelo BooleanNetwork. Estado: 1011
+Entity Customer_26 passou pelo BooleanNetwork. Estado: 0010
+Entity Customer_27 passou pelo BooleanNetwork. Estado: 1010
+Entity Customer_28 passou pelo BooleanNetwork. Estado: 1011
+Entity Customer_29 passou pelo BooleanNetwork. Estado: 0010
+Entity Customer_30 passou pelo BooleanNetwork. Estado: 1010
+Entity Customer_31 passou pelo BooleanNetwork. Estado: 1011
+Entity Customer_32 passou pelo BooleanNetwork. Estado: 0010
+Entity Customer_33 passou pelo BooleanNetwork. Estado: 1010
+Entity Customer_34 passou pelo BooleanNetwork. Estado: 1011
+Entity Customer_35 passou pelo BooleanNetwork. Estado: 0010
+Entity Customer_36 passou pelo BooleanNetwork. Estado: 1010
+Entity Customer_37 passou pelo BooleanNetwork. Estado: 1011
+Entity Customer_38 passou pelo BooleanNetwork. Estado: 0010
+Entity Customer_39 passou pelo BooleanNetwork. Estado: 1010
+Entity Customer_40 passou pelo BooleanNetwork. Estado: 1011
+Entity Customer_41 passou pelo BooleanNetwork. Estado: 0010
+Entity Customer_42 passou pelo BooleanNetwork. Estado: 1010
+Entity Customer_43 passou pelo BooleanNetwork. Estado: 1011
+Entity Customer_44 passou pelo BooleanNetwork. Estado: 0010
+Entity Customer_45 passou pelo BooleanNetwork. Estado: 1010
+Entity Customer_46 passou pelo BooleanNetwork. Estado: 1011
+Entity Customer_47 passou pelo BooleanNetwork. Estado: 0010
+Entity Customer_48 passou pelo BooleanNetwork. Estado: 1010
+Entity Customer_49 passou pelo BooleanNetwork. Estado: 1011
+Entity Customer_50 passou pelo BooleanNetwork. Estado: 0010
+Entity Customer_51 passou pelo BooleanNetwork. Estado: 1010
+Entity Customer_52 passou pelo BooleanNetwork. Estado: 1011
+Entity Customer_53 passou pelo BooleanNetwork. Estado: 0010
+Entity Customer_54 passou pelo BooleanNetwork. Estado: 1010
+Entity Customer_55 passou pelo BooleanNetwork. Estado: 1011
+Entity Customer_56 passou pelo BooleanNetwork. Estado: 0010
+Entity Customer_57 passou pelo BooleanNetwork. Estado: 1010
+Entity Customer_58 passou pelo BooleanNetwork. Estado: 1011
+
+--------------------------------------------------------------
+
+|  Replication 1 of 1 has finished with last event at time 994.424930 second because replication length 1000.000000 second was achieved; Elapsed time 0.016336 seconds.
+|  
+|  Begin of Report for replication 1 of 1
+|  |  |  |  name                                elems    min      max      average  variance stddev   varCoef  confInterconfLevel
+|  |  Statistics for Create:
+|  |  |  Create_1:
+|  |  |  |  Create_1.CountNumberOut............ 58.0
+|  |  Statistics for Dispose:
+|  |  |  Dispose_1:
+|  |  |  |  Dispose_1.CountNumberIn............ 58.0     
+|  |  Statistics for EntityType:
+|  |  |  Customer:
+|  |  |  |  Customer.TotalTimeInSystem......... 58.0     0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000
+|  |  |  |  Customer.TransferTime.............. 58.0     0.0      994.4249 495.0947 100009.9 316.2435 0.638754 81.38862 0.950000
+|  |  Statistics for Queue:
+|  |  |  Seize_1.Queue:
+|  |  |  |  Seize_1.Queue.NumberInQueue........ 0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000
+|  |  |  |  Seize_1.Queue.TimeInQueue.......... 0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000
+|  |  Statistics for Resource:
+|  |  |  Machine_1:
+|  |  |  |  Machine_1.ProportionSeized......... 1.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000
+|  |  |  |  Machine_1.CapacityUtilization...... 0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000
+|  |  |  |  Machine_1.TimeSeized............... 58.0     0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000
+|  |  |  |  Machine_1.TimeFailed............... 0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000
+|  |  |  |  Machine_1.TotalTimeSeized.......... 0.0
+|  |  |  |  Machine_1.TotalTimeFailed.......... 0.0
+|  |  |  |  Machine_1.Seizes................... 58.0
+|  |  |  |  Machine_1.Releases................. 58.0
+|  |  |  |  Machine_1.CostBusy................. 0.0      
+|  |  |  |  Machine_1.CostIdle................. 994.42493
+|  |  |  |  Machine_1.CostPerUse............... 58.0     
+|  End of Report for replication 1 of 1
+
+Begin of Report for Simulation (based on 1 replications)
+|  Simulation Controls:
+|  |  |  name                                elems    min      max      average  variance stddev   varCoef  confInterconfLevel
+|  Statistics for Create:
+|  |  Create_1:
+|  |  |  Create_1.CountNumberOut............ 1.0      58.0     58.0     58.0     0.0      0.0      0.0      0.0      0.950000 
+|  Statistics for Dispose:
+|  |  Dispose_1:
+|  |  |  Dispose_1.CountNumberIn............ 1.0      58.0     58.0     58.0     0.0      0.0      0.0      0.0      0.950000 
+|  Statistics for EntityType:
+|  |  Customer:
+|  |  |  Customer.TotalTimeInSystem......... 1.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000 
+|  |  |  Customer.TransferTime.............. 1.0      495.0947 495.0947 495.0947 0.0      0.0      0.0      0.0      0.950000 
+|  Statistics for Queue:
+|  |  Seize_1.Queue:
+|  |  |  Seize_1.Queue.NumberInQueue........ 1.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000 
+|  |  |  Seize_1.Queue.TimeInQueue.......... 1.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000 
+|  Statistics for Resource:
+|  |  Machine_1:
+|  |  |  Machine_1.ProportionSeized......... 1.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000 
+|  |  |  Machine_1.CapacityUtilization...... 1.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000 
+|  |  |  Machine_1.TimeSeized............... 1.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000 
+|  |  |  Machine_1.TimeFailed............... 1.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000 
+|  |  |  Machine_1.TotalTimeSeized.......... 1.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000 
+|  |  |  Machine_1.TotalTimeFailed.......... 1.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000 
+|  |  |  Machine_1.Seizes................... 1.0      58.0     58.0     58.0     0.0      0.0      0.0      0.0      0.950000 
+|  |  |  Machine_1.Releases................. 1.0      58.0     58.0     58.0     0.0      0.0      0.0      0.0      0.950000 
+|  |  |  Machine_1.CostBusy................. 1.0      0.0      0.0      0.0      0.0      0.0      0.0      0.0      0.950000 
+|  |  |  Machine_1.CostIdle................. 1.0      994.4249 994.4249 994.4249 0.0      0.0      0.0      0.0      0.950000 
+|  |  |  Machine_1.CostPerUse............... 1.0      58.0     58.0     58.0     0.0      0.0      0.0      0.0      0.950000 
+End of Report for Simulation
