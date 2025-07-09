@@ -5,7 +5,6 @@
 #include "../../kernel/simulator/Attribute.h"
 #include "../../kernel/simulator/SimulationControlAndResponse.h"
 #include "../../kernel/simulator/ModelComponent.h"
-std::string BooleanNetwork::_userConfig = "";
 
 #ifdef PLUGINCONNECT_DYNAMIC
 
@@ -13,10 +12,6 @@ extern "C" StaticGetPluginInformation GetPluginInformation() {
 	return &BooleanNetwork::GetPluginInformation;
 }
 #endif
-
-std::string BooleanNetwork::getUserConfig() {
-	return _userConfig;
-}
 
 ModelDataDefinition* BooleanNetwork::NewInstance(Model* model, std::string name) {
 	return new BooleanNetwork(model, name);
@@ -30,13 +25,6 @@ ModelComponent* BooleanNetwork::LoadInstance(Model* model, PersistenceRecord *fi
 
 BooleanNetwork::BooleanNetwork(Model* model, std::string name)
 : ModelComponent(model, Util::TypeOf<BooleanNetwork>(), name) {}
-
-void BooleanNetwork::initializeNetwork(const std::string& initialState) {
-	_state.clear();
-	for (char c : initialState) {
-		_state.push_back(c == '1');
-	}
-}
 
 void BooleanNetwork::setExpression(std::vector<std::string> expr) {
 	_expression = expr;
@@ -79,6 +67,13 @@ void BooleanNetwork::_onDispatchEvent(Entity* entity, unsigned int inputPortNumb
 	}
 	// Passa a entidade adiante sem atraso
 	_parentModel->sendEntityToComponent(entity, this->getConnections()->getFrontConnection());
+}
+
+void BooleanNetwork::initializeNetwork(const std::string& initialState) {
+	_state.clear();
+	for (char c : initialState) {
+		_state.push_back(c == '1');
+	}
 }
 
 bool BooleanNetwork::_loadInstance(PersistenceRecord *fields) {
